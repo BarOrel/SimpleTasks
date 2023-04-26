@@ -18,7 +18,7 @@ namespace SimpleTasks.Controllers
             this.taskService = taskService;
         }
 
-        [HttpGet]
+        [HttpGet("{UserId}")]
         public async Task<IActionResult> GetTasks(string UserId)
         {
             try
@@ -40,7 +40,7 @@ namespace SimpleTasks.Controllers
             catch (Exception e) { return BadRequest(e.Message); }
         }
 
-        [HttpDelete]
+        [HttpDelete("{taskId}")]
         public async Task<IActionResult> DeleteTask(Guid taskId)
         {
             try
