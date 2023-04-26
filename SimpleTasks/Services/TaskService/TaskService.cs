@@ -21,33 +21,26 @@ namespace SimpleTasks.Services.TaskService
             try
             {
                 await taskRepository.Insert(task);
-
             }
             catch (Exception e) { throw new Exception(e.Message); }
-
         }
 
         public async Task DeleteTask(TaskModel task)
         {
             try
             {
-                await taskRepository.Insert(task);
-
+                await taskRepository.Delete(task);
             }
             catch (Exception e) { throw new Exception(e.Message); }
-
         }
 
         public async Task EditTask(TaskModel task)
         {
-            task.Id = Guid.NewGuid();
             try
             {
-                await taskRepository.Insert(task);
-
+                await taskRepository.Update(task);
             }
             catch (Exception e) { throw new Exception(e.Message); }
-
         }
 
         public async Task<IEnumerable<TaskModel>> GetTasksByUser(string UserId)
@@ -62,8 +55,6 @@ namespace SimpleTasks.Services.TaskService
             catch (Exception e) { throw new Exception(e.Message); }
 
         }
-
-       
 
     }
 }
