@@ -19,12 +19,12 @@ namespace SimpleTasks.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetTasks(RegisterDTO DTO)
+        public async Task<IActionResult> GetTasks(string UserId)
         {
             try
             {
-                //await userService.Register(DTO);
-                return Ok("New User has been register");
+                var TasksByUser = await taskService.GetTasksByUser(UserId);
+                return Ok(TasksByUser);
             }
             catch (Exception e) { return BadRequest(e.Message); }
         }
@@ -41,23 +41,23 @@ namespace SimpleTasks.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteTask(RegisterDTO DTO)
+        public async Task<IActionResult> DeleteTask(Guid taskId)
         {
             try
             {
-                //await userService.Register(DTO);
-                return Ok("New User has been register");
+                await taskService.DeleteTask(taskId);
+                return Ok($"Task : {taskId} \nHas Been Deleted");
             }
             catch (Exception e) { return BadRequest(e.Message); }
         }
 
         [HttpPatch]
-        public async Task<IActionResult> EditTask(RegisterDTO DTO)
+        public async Task<IActionResult> EditTask(TaskModel task)
         {
             try
             {
-                //await userService.Register(DTO);
-                return Ok("New User has been register");
+                await taskService.EditTask(task);
+                return Ok(task);
             }
             catch (Exception e) { return BadRequest(e.Message); }
         }

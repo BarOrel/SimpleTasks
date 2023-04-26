@@ -25,10 +25,11 @@ namespace SimpleTasks.Services.TaskService
             catch (Exception e) { throw new Exception(e.Message); }
         }
 
-        public async Task DeleteTask(TaskModel task)
+        public async Task DeleteTask(Guid taskId)
         {
             try
             {
+                var task = await taskRepository.GetById(taskId);
                 await taskRepository.Delete(task);
             }
             catch (Exception e) { throw new Exception(e.Message); }
